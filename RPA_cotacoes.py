@@ -31,7 +31,6 @@ conexao = psycopg2.connect(
         port='21452'
     )
 cursor = conexao.cursor()
-print(dolar)
 cursor.execute(f'CALL inserir_cotacao({dolar})')
 conexao.commit()
 
