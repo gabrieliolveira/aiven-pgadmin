@@ -19,6 +19,7 @@ time.sleep(2)
 
 dolar = driver.find_element(By.XPATH, '//*[@id="knowledge-currency__updatable-data-column"]/div[1]/div[2]/span[1]').text
 dolar = dolar.replace(',', '.')
+float(dolar)
 
 driver.close()
 
@@ -30,13 +31,9 @@ conexao = psycopg2.connect(
         port='21452'
     )
 cursor = conexao.cursor()
-
+print(dolar)
 cursor.execute(f'CALL inserir_cotacao({dolar})')
 conexao.commit()
 
 cursor.close()
 conexao.close()
-
-
-
-
